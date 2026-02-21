@@ -2,6 +2,7 @@ package com.boardquest.ui.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
@@ -17,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.boardquest.ui.components.GameCard
+import com.boardquest.ui.components.HomeScreenHeader
 import com.boardquest.viewmodel.HomeViewModel
 
 @Composable
@@ -37,13 +39,17 @@ fun HomeScreen(
             }
         }
         else -> {
-            LazyColumn(
-                modifier = Modifier.fillMaxSize(),
-                contentPadding = PaddingValues(16.dp),
-                verticalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                items(uiState.games) { game ->
-                    GameCard(game = game)
+            Column(modifier = Modifier.fillMaxSize()) {
+                HomeScreenHeader()
+
+                LazyColumn(
+                    modifier = Modifier.fillMaxSize(),
+                    contentPadding = PaddingValues(16.dp),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    items(uiState.games) { game ->
+                        GameCard(game = game)
+                    }
                 }
             }
         }
