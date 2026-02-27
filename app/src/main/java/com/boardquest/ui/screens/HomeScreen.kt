@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
@@ -36,6 +37,7 @@ import coil3.compose.AsyncImage
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.boardquest.ui.components.GameCard
 import com.boardquest.ui.components.home.Header
+import com.boardquest.ui.components.home.Statistics
 import com.boardquest.viewmodel.HomeViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -59,6 +61,11 @@ fun HomeScreen(
         else -> {
             Column(modifier = Modifier.fillMaxSize()) {
                 Header()
+                Statistics(
+                    modifier = Modifier
+                        .align(Alignment.CenterHorizontally)
+                        .offset(y = (-20).dp)
+                )
                 Row(
                     modifier = Modifier.fillMaxWidth()
                         .padding(10.dp)
@@ -116,7 +123,7 @@ fun HomeScreen(
                 }
 
                 LazyColumn(
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = Modifier.weight(1f),
                     contentPadding = PaddingValues(16.dp),
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
