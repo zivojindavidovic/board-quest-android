@@ -68,4 +68,8 @@ dependencies {
 
     // Runtime
     implementation(libs.androidx.compose.runtime)
+
+    // Image loading
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network.okhttp)
 }
