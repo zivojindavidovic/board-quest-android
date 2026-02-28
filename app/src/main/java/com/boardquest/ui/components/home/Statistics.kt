@@ -9,13 +9,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Computer
-import androidx.compose.material.icons.filled.InsertChartOutlined
-import androidx.compose.material.icons.filled.PeopleAlt
-import androidx.compose.material.icons.filled.PeopleOutline
+import androidx.compose.material.icons.outlined.EditCalendar
+import androidx.compose.material.icons.outlined.PeopleAlt
+import androidx.compose.material.icons.outlined.SportsEsports
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -52,9 +50,10 @@ fun Statistics(modifier: Modifier) {
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Icon(
-                        imageVector = Icons.Default.Computer,
+                        imageVector = Icons.Outlined.SportsEsports,
                         contentDescription = null,
-                        modifier = Modifier.size(30.dp)
+                        modifier = Modifier.size(30.dp),
+                        tint = Color(0xFF2563EB)
                     )
 
                     Text(
@@ -83,9 +82,10 @@ fun Statistics(modifier: Modifier) {
                    horizontalAlignment = Alignment.CenterHorizontally
                ) {
                    Icon(
-                       imageVector = Icons.Default.PeopleAlt,
+                       imageVector = Icons.Outlined.PeopleAlt,
                        contentDescription = null,
-                       modifier = Modifier.size(30.dp)
+                       modifier = Modifier.size(30.dp),
+                       tint = Color(0xFF16A34A)
                    )
 
                    Text(
@@ -114,9 +114,10 @@ fun Statistics(modifier: Modifier) {
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Icon(
-                        imageVector = Icons.Default.InsertChartOutlined,
+                        imageVector = Icons.Outlined.EditCalendar,
                         contentDescription = null,
-                        modifier = Modifier.size(30.dp)
+                        modifier = Modifier.size(30.dp),
+                        tint = Color(0xFF9333EA)
                     )
 
                     Text(
