@@ -37,6 +37,7 @@ import coil3.compose.AsyncImage
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.boardquest.ui.components.GameCard
 import com.boardquest.ui.components.home.Header
+import com.boardquest.ui.components.home.PopularGames
 import com.boardquest.ui.components.home.Statistics
 import com.boardquest.viewmodel.HomeViewModel
 
@@ -66,71 +67,7 @@ fun HomeScreen(
                         .align(Alignment.CenterHorizontally)
                         .offset(y = (-20).dp)
                 )
-                Row(
-                    modifier = Modifier.fillMaxWidth()
-                        .padding(10.dp)
-                ) {
-                    Text(text = "Pretraži igre")
-                }
-
-                OutlinedTextField(
-                    value = "",
-                    onValueChange = {},
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 10.dp),
-                    placeholder = { Text("Pretraži igre...") },
-                    leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
-                    singleLine = true,
-                )
-
-                Text(text = "Popularne Igre", style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
-
-                HorizontalMultiBrowseCarousel(
-                    state = rememberCarouselState() { uiState.games.count() },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .wrapContentHeight()
-                        .padding(top = 16.dp, bottom = 16.dp),
-                    preferredItemWidth = 180.dp,
-                    itemSpacing = 8.dp,
-                    contentPadding = PaddingValues(horizontal = 16.dp)
-                ) {
-                    i ->
-                    val item = uiState.games[i]
-
-                    Column() {
-                        AsyncImage(
-                            model = item.imageUrl,
-                            contentDescription = item.name,
-                            modifier = Modifier
-                                .height(185.dp)
-                                .width(185.dp)
-                                .maskClip(MaterialTheme.shapes.extraLarge),
-                            contentScale = ContentScale.Crop
-                        )
-
-                        Text(text = item.name)
-                        Row(
-
-                        ) {
-                            Icon(
-                                imageVector = Icons.Default.StarOutline,
-                                contentDescription = "Home"
-                            )
-                            Text(text = "8.7", style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.Light)
-                        }                   }
-                }
-
-                LazyColumn(
-                    modifier = Modifier.weight(1f),
-                    contentPadding = PaddingValues(16.dp),
-                    verticalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    items(uiState.games) { game ->
-                        GameCard(game = game)
-                    }
-                }
+                PopularGames()
             }
         }
     }
