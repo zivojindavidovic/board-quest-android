@@ -23,13 +23,13 @@ class HomeViewModel(
 
     private fun loadGames() {
         _uiState.update { it.copy(isLoading = true) }
-        val games = repository.getGames()
-        _uiState.update { it.copy(isLoading = false, games = games) }
+        val games = repository.getPopularGames()
+        _uiState.update { it.copy(isLoading = false, popularGames = games) }
     }
 }
 
 data class HomeUiState(
     val isLoading: Boolean = false,
-    val games: List<Game> = emptyList(),
+    val popularGames: List<Game> = emptyList(),
     val error: String? = null
 )

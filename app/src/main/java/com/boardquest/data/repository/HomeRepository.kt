@@ -3,7 +3,7 @@ package com.boardquest.data.repository
 import com.boardquest.domain.Game
 
 class HomeRepository {
-    fun getGames(): List<Game> {
+    fun getPopularGames(): List<Game> {
         return listOf(
             Game(
                 id = 1,

@@ -74,7 +74,7 @@ fun PopularGames(homeViewModel: HomeViewModel = viewModel()) {
                 Column(
 
                 ) {
-                    uiState.games.forEach { it ->
+                    uiState.popularGames.forEach { it ->
                         Column(
                             modifier = Modifier
                                 .fillMaxWidth()
