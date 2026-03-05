@@ -38,7 +38,7 @@ fun PopularGames(homeViewModel: HomeViewModel = viewModel()) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(start = 16.dp, end = 16.dp)
+            .padding(horizontal = 16.dp)
     ) {
         Column(
             modifier = Modifier
@@ -67,7 +67,7 @@ fun PopularGames(homeViewModel: HomeViewModel = viewModel()) {
                 }
             }
 
-            Row (
+            Row(
                 modifier = Modifier
                     .fillMaxWidth()
             ) {
@@ -128,7 +128,7 @@ fun PopularGames(homeViewModel: HomeViewModel = viewModel()) {
                                     .weight(0.3f),
                                 horizontalArrangement = Arrangement.Center
                             ) {
-                                Row (
+                                Row(
                                     modifier = Modifier
                                         .fillMaxHeight()
                                         .weight(0.3f)
@@ -136,7 +136,7 @@ fun PopularGames(homeViewModel: HomeViewModel = viewModel()) {
 
                                 }
 
-                                Row (
+                                Row(
                                     modifier = Modifier
                                         .fillMaxHeight()
                                         .weight(0.7f)
@@ -154,7 +154,10 @@ fun PopularGames(homeViewModel: HomeViewModel = viewModel()) {
                                         style = MaterialTheme.typography.bodyLarge,
                                         fontWeight = FontWeight.SemiBold
                                     )
-                                    Text(text = "•", modifier = Modifier.padding(horizontal = 10.dp))
+                                    Text(
+                                        text = "•",
+                                        modifier = Modifier.padding(horizontal = 10.dp)
+                                    )
                                     Text(text = it.minPlayers.toString() + " - " + it.maxPlayers.toString() + " igrača")
                                 }
                             }
