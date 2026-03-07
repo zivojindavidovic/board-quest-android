@@ -25,7 +25,8 @@ import com.boardquest.viewmodel.HomeViewModel
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
-    viewModel: HomeViewModel = viewModel()
+    viewModel: HomeViewModel = viewModel(),
+    onNavigateToGames: () -> Unit = {}
 ) {
     val uiState by viewModel.uiState.collectAsState()
 
@@ -48,7 +49,7 @@ fun HomeScreen(
                         .align(Alignment.CenterHorizontally)
                         .offset(y = (-20).dp)
                 )
-                PopularGames()
+                PopularGames(onNavigateToGames = onNavigateToGames)
             }
         }
     }

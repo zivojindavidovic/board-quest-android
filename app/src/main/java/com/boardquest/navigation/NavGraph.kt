@@ -1,6 +1,7 @@
 package com.boardquest.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -16,7 +17,17 @@ fun NavGraph(navController: NavHostController) {
         navController = navController,
         startDestination = BottomNavItem.Home.route
     ) {
-        composable(BottomNavItem.Home.route) { HomeScreen() }
+        composable(BottomNavItem.Home.route) {
+            HomeScreen(onNavigateToGames = {
+                navController.navigate(BottomNavItem.Games.route) {
+                    popUpTo(navController.graph.findStartDestination().id) {
+                        saveState = true
+                    }
+                    launchSingleTop = true
+                    restoreState = true
+                }
+            })
+        }
         composable(BottomNavItem.Games.route) { GamesScreen() }
         composable(BottomNavItem.Map.route) { MapScreen() }
         composable(BottomNavItem.Clubs.route) { ClubsScreen() }

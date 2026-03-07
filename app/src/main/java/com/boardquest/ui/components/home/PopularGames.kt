@@ -1,6 +1,7 @@
 package com.boardquest.ui.components.home
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -33,7 +34,7 @@ import coil3.compose.AsyncImage
 import com.boardquest.viewmodel.HomeViewModel
 
 @Composable
-fun PopularGames(homeViewModel: HomeViewModel = viewModel()) {
+fun PopularGames(homeViewModel: HomeViewModel = viewModel(), onNavigateToGames: () -> Unit = {}) {
     val uiState by homeViewModel.uiState.collectAsState()
 
     Box(
@@ -63,7 +64,8 @@ fun PopularGames(homeViewModel: HomeViewModel = viewModel()) {
                     Text(
                         text = "Vidi sve",
                         style = MaterialTheme.typography.bodyMedium,
-                        color = Color(0xFF2563EB)
+                        color = Color(0xFF2563EB),
+                        modifier = Modifier.clickable { onNavigateToGames() }
                     )
                 }
             }
