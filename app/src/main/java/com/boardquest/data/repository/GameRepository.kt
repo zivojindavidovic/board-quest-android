@@ -8,6 +8,10 @@ data class GamesPage(
     val hasNextPage: Boolean
 )
 
+data class HomePage(
+    val games: List<Game>
+)
+
 class GameRepository {
     private val api = RetrofitInstance.gameApi
 

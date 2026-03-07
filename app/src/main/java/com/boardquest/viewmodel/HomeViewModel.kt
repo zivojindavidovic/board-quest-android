@@ -1,6 +1,7 @@
 package com.boardquest.viewmodel
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.boardquest.data.repository.HomeRepository
 import com.boardquest.domain.Game
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -8,6 +9,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
 @HiltViewModel
 class HomeViewModel(
@@ -22,9 +24,15 @@ class HomeViewModel(
     }
 
     private fun loadGames() {
-        _uiState.update { it.copy(isLoading = true) }
-        val games = repository.getPopularGames()
-        _uiState.update { it.copy(isLoading = false, popularGames = games) }
+        viewModelScope.launch {
+            _uiState.update { it.copy(isLoading = true) }
+            try {
+                val result = repository.getPopularGames(page = 1, perPage = 3)
+                _uiState.update { it.copy(isLoading = false, popularGames = result.games) }
+            } catch (e: Exception) {
+                _uiState.update { it.copy(isLoading = false, error = e.message) }
+            }
+        }
     }
 }
 

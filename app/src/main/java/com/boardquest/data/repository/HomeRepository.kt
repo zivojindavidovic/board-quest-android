@@ -1,46 +1,28 @@
 package com.boardquest.data.repository
 
+import com.boardquest.data.remote.RetrofitInstance
 import com.boardquest.domain.Game
 
 class HomeRepository {
-    fun getPopularGames(): List<Game> {
-        return listOf(
-            Game(
-                id = "1",
-                name = "Šah",
-                minPlayers = 2,
-                maxPlayers = 2,
-                rating = 3.5,
-                ratingCount = 0,
-                playTimeMinutes = 60,
-                yearPublished = 0,
-                description = "Opis igrice",
-                imageUrl = "https://cdn.mobygames.com/covers/7806161-catan-universe-nintendo-switch-front-cover.jpg"
-            ),
-            Game(
-                id = "2",
-                name = "Monopol",
-                minPlayers = 2,
-                maxPlayers = 8,
-                rating = 3.5,
-                ratingCount = 0,
-                playTimeMinutes = 120,
-                yearPublished = 0,
-                description = "Opis igrice",
-                imageUrl = "https://cdn.mobygames.com/covers/7806161-catan-universe-nintendo-switch-front-cover.jpg"
-            ),
-            Game(
-                id = "3",
-                name = "Catan",
-                minPlayers = 3,
-                maxPlayers = 4,
-                rating = 3.5,
-                ratingCount = 0,
-                playTimeMinutes = 90,
-                yearPublished = 0,
-                description = "Opis igrice",
-                imageUrl = "https://cdn.mobygames.com/covers/7806161-catan-universe-nintendo-switch-front-cover.jpg"
-            )
+    private val api = RetrofitInstance.gameApi
+
+    suspend fun getPopularGames(page: Int, perPage: Int): HomePage {
+        val response = api.getGames(page = page, perPage = perPage)
+        return HomePage(
+            games = response.data.map { dto ->
+                Game(
+                    id = dto.id,
+                    name = dto.title,
+                    description = dto.description,
+                    rating = dto.avgRating.toDoubleOrNull() ?: 0.0,
+                    ratingCount = dto.ratingCount,
+                    minPlayers = dto.minPlayers,
+                    maxPlayers = dto.maxPlayers,
+                    playTimeMinutes = dto.playTimeMinutes,
+                    yearPublished = dto.yearPublished,
+                    imageUrl = dto.imageUrl
+                )
+            }
         )
     }
 }
