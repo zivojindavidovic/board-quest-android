@@ -91,7 +91,7 @@ fun GameCard(it: Game) {
                 imageVector = Icons.Default.AccessTime,
                 contentDescription = null,
                 tint = Color.Gray,
-                modifier = Modifier.size(16.dp).padding(start = 12.dp, end = 5.dp)
+                modifier = Modifier.padding(start = 12.dp, end = 5.dp).size(16.dp)
             )
             Text(text = "60 - 120 min", color = Color.Gray)
         }
