@@ -41,20 +41,14 @@ fun HomeScreen(
             }
         }
         else -> {
-            Column(modifier = Modifier.fillMaxSize()) {
+            Column(modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState())) {
                 Header()
                 Statistics(
                     modifier = Modifier
                         .align(Alignment.CenterHorizontally)
                         .offset(y = (-20).dp)
                 )
-                Column(
-                    modifier = Modifier
-                        .weight(1f)
-                        .verticalScroll(rememberScrollState())
-                ) {
-                    PopularGames()
-                }
+                PopularGames()
             }
         }
     }
