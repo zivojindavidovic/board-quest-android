@@ -60,7 +60,8 @@ fun Header() {
             onValueChange = { query = it },
             modifier = Modifier
                 .fillMaxWidth()
-                .onFocusChanged { isFocused = it.isFocused },
+                .onFocusChanged { isFocused = it.isFocused }
+                .padding(vertical = 15.dp),
             singleLine = true,
             textStyle = MaterialTheme.typography.bodyLarge.copy(color = textColor),
             cursorBrush = SolidColor(textColor),
@@ -68,7 +69,7 @@ fun Header() {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(50.dp)
+                        .height(40.dp)
                         .clip(searchShape)
                         .background(containerColor)
                         .border(3.dp, borderColor, searchShape)
