@@ -20,7 +20,6 @@ fun GameCard(game: Game) {
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(text = game.name, style = MaterialTheme.typography.titleMedium)
-            Text(text = game.category, style = MaterialTheme.typography.bodySmall)
             Text(
                 text = "Igrači: ${game.minPlayers}–${game.maxPlayers}",
                 style = MaterialTheme.typography.bodySmall

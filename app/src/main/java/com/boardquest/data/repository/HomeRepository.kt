@@ -6,31 +6,40 @@ class HomeRepository {
     fun getPopularGames(): List<Game> {
         return listOf(
             Game(
-                id = 1,
+                id = "1",
                 name = "Šah",
-                category = "Strategija",
                 minPlayers = 2,
                 maxPlayers = 2,
                 rating = 3.5,
-                description = "Opis igrice"
+                ratingCount = 0,
+                playTimeMinutes = 60,
+                yearPublished = 0,
+                description = "Opis igrice",
+                imageUrl = "https://cdn.mobygames.com/covers/7806161-catan-universe-nintendo-switch-front-cover.jpg"
             ),
             Game(
-                id = 2,
+                id = "2",
                 name = "Monopol",
-                category = "Porodično",
                 minPlayers = 2,
                 maxPlayers = 8,
                 rating = 3.5,
-                description = "Opis igrice"
+                ratingCount = 0,
+                playTimeMinutes = 120,
+                yearPublished = 0,
+                description = "Opis igrice",
+                imageUrl = "https://cdn.mobygames.com/covers/7806161-catan-universe-nintendo-switch-front-cover.jpg"
             ),
             Game(
-                id = 3,
+                id = "3",
                 name = "Catan",
-                category = "Strategija",
                 minPlayers = 3,
                 maxPlayers = 4,
                 rating = 3.5,
-                description = "Opis igrice"
+                ratingCount = 0,
+                playTimeMinutes = 90,
+                yearPublished = 0,
+                description = "Opis igrice",
+                imageUrl = "https://cdn.mobygames.com/covers/7806161-catan-universe-nintendo-switch-front-cover.jpg"
             )
         )
     }

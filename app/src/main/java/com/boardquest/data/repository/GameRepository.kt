@@ -1,145 +1,34 @@
 package com.boardquest.data.repository
 
+import com.boardquest.data.remote.RetrofitInstance
 import com.boardquest.domain.Game
 
+data class GamesPage(
+    val games: List<Game>,
+    val hasNextPage: Boolean
+)
+
 class GameRepository {
-    fun getGames(): List<Game> {
-        return listOf(
-            Game(
-                id = 1,
-                name = "Šah",
-                category = "Strategija",
-                minPlayers = 2,
-                maxPlayers = 2,
-                rating = 3.5,
-                description = "Opis igrice"
-            ),
-            Game(
-                id = 2,
-                name = "Monopol",
-                category = "Porodično",
-                minPlayers = 2,
-                maxPlayers = 8,
-                rating = 3.5,
-                description = "Opis igrice"
-            ),
-            Game(
-                id = 3,
-                name = "Catan",
-                category = "Strategija",
-                minPlayers = 3,
-                maxPlayers = 4,
-                rating = 3.5,
-                description = "Opis igrice"
-            ),
-            Game(
-                id = 1,
-                name = "Šah",
-                category = "Strategija",
-                minPlayers = 2,
-                maxPlayers = 2,
-                rating = 3.5,
-                description = "Opis igrice"
-            ),
-            Game(
-                id = 2,
-                name = "Monopol",
-                category = "Porodično",
-                minPlayers = 2,
-                maxPlayers = 8,
-                rating = 3.5,
-                description = "Opis igrice"
-            ),
-            Game(
-                id = 3,
-                name = "Catan",
-                category = "Strategija",
-                minPlayers = 3,
-                maxPlayers = 4,
-                rating = 3.5,
-                description = "Opis igrice"
-            ),
-            Game(
-                id = 1,
-                name = "Šah",
-                category = "Strategija",
-                minPlayers = 2,
-                maxPlayers = 2,
-                rating = 3.5,
-                description = "Opis igrice"
-            ),
-            Game(
-                id = 2,
-                name = "Monopol",
-                category = "Porodično",
-                minPlayers = 2,
-                maxPlayers = 8,
-                rating = 3.5,
-                description = "Opis igrice"
-            ),
-            Game(
-                id = 3,
-                name = "Catan",
-                category = "Strategija",
-                minPlayers = 3,
-                maxPlayers = 4,
-                rating = 3.5,
-                description = "Opis igrice"
-            ),
-            Game(
-                id = 1,
-                name = "Šah",
-                category = "Strategija",
-                minPlayers = 2,
-                maxPlayers = 2,
-                rating = 3.5,
-                description = "Opis igrice"
-            ),
-            Game(
-                id = 2,
-                name = "Monopol",
-                category = "Porodično",
-                minPlayers = 2,
-                maxPlayers = 8,
-                rating = 3.5,
-                description = "Opis igrice"
-            ),
-            Game(
-                id = 3,
-                name = "Catan",
-                category = "Strategija",
-                minPlayers = 3,
-                maxPlayers = 4,
-                rating = 3.5,
-                description = "Opis igrice"
-            ),
-            Game(
-                id = 1,
-                name = "Šah",
-                category = "Strategija",
-                minPlayers = 2,
-                maxPlayers = 2,
-                rating = 3.5,
-                description = "Opis igrice"
-            ),
-            Game(
-                id = 2,
-                name = "Monopol",
-                category = "Porodično",
-                minPlayers = 2,
-                maxPlayers = 8,
-                rating = 3.5,
-                description = "Opis igrice"
-            ),
-            Game(
-                id = 3,
-                name = "Catan",
-                category = "Strategija",
-                minPlayers = 3,
-                maxPlayers = 4,
-                rating = 3.5,
-                description = "Opis igrice"
-            )
+    private val api = RetrofitInstance.gameApi
+
+    suspend fun getGames(page: Int = 1, perPage: Int = 10): GamesPage {
+        val response = api.getGames(page = page, perPage = perPage)
+        return GamesPage(
+            games = response.data.map { dto ->
+                Game(
+                    id = dto.id,
+                    name = dto.title,
+                    description = dto.description,
+                    rating = dto.avgRating.toDoubleOrNull() ?: 0.0,
+                    ratingCount = dto.ratingCount,
+                    minPlayers = dto.minPlayers,
+                    maxPlayers = dto.maxPlayers,
+                    playTimeMinutes = dto.playTimeMinutes,
+                    yearPublished = dto.yearPublished,
+                    imageUrl = dto.imageUrl
+                )
+            },
+            hasNextPage = response.meta.currentPage < response.meta.lastPage
         )
     }
 }
